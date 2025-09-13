@@ -1,0 +1,31 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Docker Hub Login
+      run: docker login -u nozich --password ${{secrets.DOCKER_ACCESS_TOKEN}}
+
+      # npm i -g zx@latest && echo "zx version $(zx -v)" && zx ./push.js
+    - name: Build the Docker image
+      run:
+        pwd &&
+        ls -lash &&
+        whoami &&
+        echo "bun version $(bun -v)" &&
+        echo "node version $(node -v)" &&
+        echo "npm version $(npm -v)" &&
+        curl -fsSL https://bun.sh/install | bash &&
+        /home/runner/.bun/bin/bun run ./push.js

@@ -1,0 +1,17 @@
+name: prod
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Docker Hub Production
+        run:
+            ls -lash &&
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v ./:/app nozich/bunode:latest zsh -c "ls -lash && bun run ./push.js"
