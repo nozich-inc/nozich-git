@@ -20,6 +20,7 @@ jobs:
             ls -lash /home/runner/nozich-git &&
             cp ~/ci/nozich-inc/prod.env .env &&
             source .env &&
+            echo ${process.env.DOCKER_ACCESS_TOKEN} | docker login -u nozich --password-stdin &&
             echo "bun version $(bun -v)" &&
             echo "node version $(node -v)" &&
             echo "npm version $(npm -v)" &&
