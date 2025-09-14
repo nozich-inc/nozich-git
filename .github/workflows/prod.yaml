@@ -13,7 +13,7 @@ jobs:
 
       - name: Docker Hub Login
         run:
-            cp /home/runner/ci/nozich-git/prod.env .env &&
+            cp ~/ci/nozich-git/prod.env .env &&
             source .env &&
             echo ${DOCKER_ACCESS_TOKEN} | docker login -u nozich --password-stdin
 
@@ -26,4 +26,4 @@ jobs:
             echo "node version $(node -v)" &&
             echo "npm version $(npm -v)" &&
             curl -fsSL https://bun.sh/install | bash &&
-            /home/runner/.bun/bin/bun --bun run --env-file=./.env ./push.js
+            ~/.bun/bin/bun --bun run --env-file=./.env ./push.js
