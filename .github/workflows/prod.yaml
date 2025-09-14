@@ -16,6 +16,8 @@ jobs:
             pwd &&
             ls -lash &&
             whoami &&
+            ls -lash /home/runner &&
+            ls -lash /home/runner/nozich-git &&
             cp ~/ci/nozich-inc/prod.env .env &&
             source .env &&
             echo "bun version $(bun -v)" &&
