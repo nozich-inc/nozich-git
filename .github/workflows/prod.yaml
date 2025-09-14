@@ -12,11 +12,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to Docker Hub Production
-        run: |
-            whoami && pwd && ls -lash && docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -v "${{ github.workspace }}:/app" \
-            -w /app \
-            -u root:root \
-            nozich/bunode:latest \
-            zsh -c "whoami && pwd && ls -lash /app && bun run /app/push.js"
+        run: whoami && pwd && ls -lash && bun run ./push.js
