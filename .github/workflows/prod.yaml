@@ -16,9 +16,11 @@ jobs:
             pwd &&
             ls -lash &&
             whoami &&
-            ls -lash /home/runner &&
-            ls -lash /home/runner/nozich-git &&
-            cp ~/ci/nozich-inc/prod.env .env &&
+            ls -lash /home/runner/ci &&
+            ls -lash /home/runner/ci/nozich-git &&
+            ls -lash ~/ci &&
+            ls -lash ~/ci/nozich-git &&
+            cp /home/runner/ci/nozich-inc/prod.env .env &&
             source .env &&
             echo ${process.env.DOCKER_ACCESS_TOKEN} | docker login -u nozich --password-stdin &&
             echo "bun version $(bun -v)" &&
