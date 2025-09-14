@@ -3,7 +3,7 @@ import { $ } from 'bun';
 const img = 'nozich/git'
 
 async function main() {
-    await $`echo ${process.env.DOCKER_ACCESS_TOKEN} | docker login -u ${process.env.DOCKER_USERNAME} --password-stdin`;
+    await $`echo ${process.env.DOCKER_ACCESS_TOKEN} | docker login -u nozich --password-stdin`;
 
     await $`docker pull ${img}:latest`
 
