@@ -11,14 +11,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Docker Hub Login
+        run:
+            cp /home/runner/ci/nozich-git/prod.env .env &&
+            source .env &&
+            echo ${DOCKER_ACCESS_TOKEN} | docker login -u nozich --password-stdin
+
       - name: Deploy to Docker Hub Production
         run:
             pwd &&
             ls -lash &&
             whoami &&
-            cp /home/runner/ci/nozich-git/prod.env .env &&
-            source .env &&
-            echo ${process.env.DOCKER_ACCESS_TOKEN} | docker login -u nozich --password-stdin &&
             echo "bun version $(bun -v)" &&
             echo "node version $(node -v)" &&
             echo "npm version $(npm -v)" &&
