@@ -13,9 +13,10 @@ jobs:
 
       - name: Deploy to Docker Hub Production
         run: |
-            docker run --rm \
+            whoami && pwd && ls -lash && docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "${{ github.workspace }}:/app" \
             -w /app \
+            -u runner:runner \
             nozich/bunode:latest \
-            zsh -c "pwd && ls -lash /app && bun run /app/push.js"
+            zsh -c "whoami && pwd && ls -lash /app && bun run /app/push.js"
