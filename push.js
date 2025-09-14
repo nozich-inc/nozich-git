@@ -3,6 +3,8 @@ import { $ } from 'bun';
 const img = 'nozich/git'
 
 async function main() {
+    await $`docker login -u ${process.env.DOCKER_USERNAME} -p ${process.env.DOCKER_ACCESS_TOKEN}`;
+
     await $`docker pull ${img}:latest`
 
     // Anil's MB Pro 250225: linux/arm64, linux/amd64, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/arm/v7, linux/arm/v6

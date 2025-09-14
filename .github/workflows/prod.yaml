@@ -16,8 +16,10 @@ jobs:
             pwd &&
             ls -lash &&
             whoami &&
+            cp ~/ci/nozich-inc/prod.env .env &&
+            source .env &&
             echo "bun version $(bun -v)" &&
             echo "node version $(node -v)" &&
             echo "npm version $(npm -v)" &&
             curl -fsSL https://bun.sh/install | bash &&
-            /home/runner/.bun/bin/bun run ./push.js
+            /home/runner/.bun/bin/bun --bun run --env-file=./.env ./push.js
