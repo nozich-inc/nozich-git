@@ -17,6 +17,6 @@ jobs:
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "${{ github.workspace }}:/app" \
             -w /app \
-            -u runner:runner \
+            -u root:root \
             nozich/bunode:latest \
             zsh -c "whoami && pwd && ls -lash /app && bun run /app/push.js"
