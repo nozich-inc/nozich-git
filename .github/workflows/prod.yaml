@@ -3,6 +3,9 @@ name: prod
 on:
   push:
     branches: [master]
+  schedule:
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
 
 jobs:
   deploy:
